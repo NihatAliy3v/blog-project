@@ -1,15 +1,8 @@
 import { baseApi } from "../../config/baseApi";
+import { registerEndpoints } from "./registerEndpoints";
 
 export const registerApi = baseApi.injectEndpoints({
-  endpoints: (builder) => ({
-    register: builder.mutation({
-      query: (userData) => ({
-        url: "/Auth/register",
-        method: "POST",
-        data: userData,
-      }),
-    }),
-  }),
+  endpoints: registerEndpoints,
 });
 
 export const { useRegisterMutation } = registerApi;
