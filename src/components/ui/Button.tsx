@@ -1,7 +1,7 @@
 import { Button as PrimaryButton } from "@mui/material";
 
 type ButtonType = {
-  variant: "contained" | "text" | "outlined";
+  variant?: "contained" | "text" | "outlined";
   color?:
     | "inherit"
     | "primary"
@@ -10,10 +10,10 @@ type ButtonType = {
     | "error"
     | "info"
     | "warning";
-  size: "large" | "medium" | "small";
+  size?: "large" | "medium" | "small";
   // bgColor: string;
   // hoverColor: string;
-  text: string;
+  text?: string;
 };
 
 export const Button: React.FC<ButtonType> = ({

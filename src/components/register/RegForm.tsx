@@ -18,7 +18,7 @@ export const RegisterForm = () => {
   const dispatch = useDispatch()
 
   console.log(registerSlice)
-
+  console.log(errors)
   const onSubmit = async (data: registerRequestType): Promise<void> => {
     try {
       const result = await registerPost(data).unwrap();

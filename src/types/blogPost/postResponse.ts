@@ -6,4 +6,5 @@ export type postResponseType = {
   likeCount: number;
   dislikeCount: number;
   createdAt: string;
+  content?: string;
 };

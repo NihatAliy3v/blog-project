@@ -10,12 +10,10 @@ export const registerSlice = createSlice({
   initialState,
   reducers: {
     register: (state, { payload }) => {
-      console.log("isledi")
       state.accessToken = payload.accessToken;
       state.refreshToken = payload.refreshToken;
       localStorage.setItem("access-token", payload.accessToken);
       localStorage.setItem("refresh-token", payload.refreshToken);
-      console.log(state,"state")
     },
   },
 });

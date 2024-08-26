@@ -8,7 +8,7 @@ export const Header = () => {
         <Link to="/" className="text-lg text-white">
           Logo
         </Link>
-        <nav>
+        {/* <nav>
           <ul>
             <li>
               <Link to="/" className="text-white">
@@ -16,7 +16,7 @@ export const Header = () => {
               </Link>
             </li>
           </ul>
-        </nav>
+        </nav> */}
         <div className="flex gap-2">
           <Button text="Login" variant="text" size="medium" />
           <Button text="Register" variant="outlined" size="medium" />
