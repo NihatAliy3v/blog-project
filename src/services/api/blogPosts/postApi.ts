@@ -5,4 +5,4 @@ export const postApi = baseApi.injectEndpoints({
   endpoints: postEndpoints,
 });
 
-export const { usePostDataGetAllQuery, usePostDataGetByIdQuery } = postApi;
+export const { usePostDataGetAllQuery, usePostDataGetByIdQuery,usePostDataCreateMutation } = postApi;

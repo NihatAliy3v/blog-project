@@ -14,7 +14,7 @@ export const BlogList: React.FC<blogDataType> = ({ blogData }) => {
         {blogData?.map((blogItem) => (
           <Card blogItem={blogItem} key={blogItem?.id}/>
         ))}
-      
+        
       </div>
     </section>
   );

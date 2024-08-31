@@ -17,7 +17,7 @@ const axiosBaseQuery: BaseQueryFn<{
       data,
       params,
     });
-    return { data: result.data };
+    return { data: result.data, meta: { headers: result.headers } };
   } catch (error) {
     const err = error as AxiosError;
     return {
