@@ -1,15 +1,24 @@
-export const postEndpoints = (builder: any) => ({
+import { EndpointBuilder } from "@reduxjs/toolkit/query";
+import { BaseQueryFn } from "@reduxjs/toolkit/query/react";
+import { AxiosResponse } from "axios";
+
+export const postEndpoints = (
+  builder: EndpointBuilder<BaseQueryFn, string, "api">
+) => ({
   postDataGetAll: builder.query({
-    query: () => ({
-      url: "/BlogPosts",
+    query: ({page,size}) => ({
+      url: `/BlogPosts/page/${page}/size/${size}`,
     }),
-    transformResponse: (response, meta) => {
-      const paginationHeader = meta?.headers?.['blog-pagination'];
+    transformResponse: (
+      response,
+      meta?: { headers: AxiosResponse["headers"] }
+    ) => {
+      const paginationHeader = meta?.headers?.["blog-pagination"];
       let paginationData = null;
       if (paginationHeader) {
         paginationData = JSON.parse(paginationHeader);
       }
-      console.log("started",meta?.headers);
+      console.log("started", paginationData);
       return { data: response, pagination: paginationData };
     },
   }),

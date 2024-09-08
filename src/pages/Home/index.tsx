@@ -4,15 +4,39 @@ import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import { Fab } from "@mui/material";
 import { Link } from "react-router-dom";
 import Pagination from "@mui/material/Pagination";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+
+
 const Home = () => {
-  const {data} = usePostDataGetAllQuery("");
+  const [searchParams,setSearchParams] = useSearchParams();
+  const pageParam = searchParams.get("page")
+
+
   const [page, setPage] = useState(1);
+  const [pageCount,setPageCount] = useState(0);
+  
+  const { data } = usePostDataGetAllQuery({ page: pageParam, size: 5 });
+
+
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
+    window.scrollTo(0, 0);
+    setSearchParams({page:value})
+    // setPage(value);
   };
-console.log()
-  console.log(page)
+  useEffect(()=>{
+    if(!pageParam){
+      setSearchParams({page:1})
+    }
+  },[])
+
+  console.log(pageParam)
+  useEffect(()=>{
+    setPageCount(data?.pagination?.TotalPages)
+  },[data?.pagination])
+  useEffect(()=>{
+    setPage(pageParam)
+  },[pageParam])
   return (
     <main className="py-12">
       <section>
@@ -26,17 +50,16 @@ console.log()
       </section>
 
       <BlogList blogData={data?.data} />
-
       <div className="container flex justify-center mt-4 ">
         <Pagination
-          count={10}
+          count={pageCount}
           variant="outlined"
           color="primary"
           size="large"
           showFirstButton
           showLastButton
           onChange={handleChange}
-          
+          page={+page}
         />
       </div>
     </main>
