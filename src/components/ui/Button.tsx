@@ -14,6 +14,7 @@ type ButtonType = {
   // bgColor: string;
   // hoverColor: string;
   text?: string;
+  handleClick?: () => void;
 };
 
 export const Button: React.FC<ButtonType> = ({
@@ -23,6 +24,7 @@ export const Button: React.FC<ButtonType> = ({
   // bgColor,
   // hoverColor,
   text = "submit",
+  handleClick,
 }) => {
   return (
     <PrimaryButton
@@ -32,6 +34,7 @@ export const Button: React.FC<ButtonType> = ({
       sx={{ color: "#fff", borderColor: "#fff", outlineColor: "#fff" }}
       size={size}
       color={color}
+      onClick={handleClick}
     >
       {text}
     </PrimaryButton>

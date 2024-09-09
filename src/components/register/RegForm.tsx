@@ -7,7 +7,10 @@ import { registerRequestType } from "../../types/auth/registerRequestType";
 import { useRegisterMutation } from "../../services/api/auth/registerApi";
 import { useDispatch } from "react-redux";
 import { register as registerSlice } from "../../features/auth/registerSlice";
+import { useNavigate } from "react-router-dom";
+
 export const RegisterForm = () => {
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -15,17 +18,15 @@ export const RegisterForm = () => {
     reset,
   } = useForm<registerRequestType>({ resolver: zodResolver(registerSchema) });
   const [registerPost, { data: registerResponse }] = useRegisterMutation();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  console.log(registerSlice)
-  console.log(errors)
   const onSubmit = async (data: registerRequestType): Promise<void> => {
     try {
       const result = await registerPost(data).unwrap();
-      console.log(registerResponse)
-      dispatch(registerSlice(result))
-    } catch (error) {
-      console.log(error);
+      dispatch(registerSlice(result));
+      navigate("/");
+    } catch (err) {
+      console.log(err);
     } finally {
       reset();
     }

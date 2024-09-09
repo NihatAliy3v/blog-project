@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import { Header } from "../layouts/Header";
 import PostDetail from "../pages/PostDetail";
 import CreatePost from "../pages/CreatePost";
+import Login from "../pages/Login";
 
 const AppRouter = () => {
   return (
@@ -12,11 +13,12 @@ const AppRouter = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<></>} />
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/post/:id" element={<PostDetail/>} />
-        <Route path="/create-post" element={<CreatePost/>} />
-        <Route element={<PrivateRoute />}></Route>
+        <Route path="/post/:id" element={<PostDetail />} />
+        <Route element={<PrivateRoute />}>
+          <Route path="/create-post" element={<CreatePost />} />
+        </Route>
       </Routes>
     </Router>
   );

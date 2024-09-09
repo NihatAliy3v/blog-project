@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldError, useForm } from "react-hook-form";
-import { postSchema } from "../../validations/postShcema";
+import { postSchema } from "../../validations/postSchema.ts";
 import { TextField } from "../ui/TextField";
 import { Button } from "../ui/Button";
 import { postRequestType } from "../../types/blogPost/postRequestType";
@@ -10,7 +10,7 @@ import { usePostDataCreateMutation } from "../../services/api/blogPosts/postApi"
 
 export const PostForm = ({ userInfo }: { userInfo: authInitialStateType }) => {
   const [filePreview, setFilePreview] = useState<string | null>(null);
-  const [createPost, { data, isError, error }] = usePostDataCreateMutation();
+  const [createPost, { isError }] = usePostDataCreateMutation();
   const created = userInfo.nameidentifier;
   const {
     handleSubmit,
@@ -24,7 +24,6 @@ export const PostForm = ({ userInfo }: { userInfo: authInitialStateType }) => {
     defaultValues: { createdBy: created },
   });
   const onSubmit = (data: postRequestType) => {
-    console.log(data);
     const formData = new FormData();
     formData.append("createdBy", data.createdBy);
     formData.append("subject", data.subject);
@@ -79,7 +78,6 @@ export const PostForm = ({ userInfo }: { userInfo: authInitialStateType }) => {
         {...register("file")}
         helperText={errors.file?.message}
         error={errors.file as FieldError}
-        // onChange={handleFileChange}
       />
       {filePreview && (
         <div className="mt-4">

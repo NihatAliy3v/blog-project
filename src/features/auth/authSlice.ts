@@ -34,7 +34,6 @@ export const authSlice = createSlice({
             import.meta.env.VITE_EXP as keyof JwtPayload
           ] as string;
         }
-        console.log(decoded);
       }
     },
   },
